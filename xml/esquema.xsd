@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    PROYECTO INTERMODULAR 1º DAM – Gestión de Restaurante
+    Módulo: Lenguajes de Marcas (0373)
+    Descripción: Esquema XSD para validar datos.xml
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ============================================================
+         Elemento raíz: restaurante
+    ============================================================ -->
+    <xs:element name="restaurante">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="carta"         type="tipoCarta"/>
+                <xs:element name="reservas_hoy"  type="tipoReservasHoy"/>
+            </xs:sequence>
+            <xs:attribute name="nombre"    type="xs:string" use="required"/>
+            <xs:attribute name="direccion" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ============================================================
+         Tipo: carta (lista de categorías)
+    ============================================================ -->
+    <xs:complexType name="tipoCarta">
+        <xs:sequence>
+            <xs:element name="categoria" type="tipoCategoria" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================================================
+         Tipo: categoria
+    ============================================================ -->
+    <xs:complexType name="tipoCategoria">
+        <xs:sequence>
+            <xs:element name="plato" type="tipoPlato" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id"     type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="nombre" type="tipoCategoriaEnum"  use="required"/>
+    </xs:complexType>
+
+    <!-- Enumeración: categorías permitidas -->
+    <xs:simpleType name="tipoCategoriaEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Entrantes"/>
+            <xs:enumeration value="Principales"/>
+            <xs:enumeration value="Postres"/>
+            <xs:enumeration value="Bebidas"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ============================================================
+         Tipo: plato
+    ============================================================ -->
+    <xs:complexType name="tipoPlato">
+        <xs:sequence>
+            <xs:element name="nombre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="descripcion">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="300"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="precio" type="tipoPrecio"/>
+        </xs:sequence>
+        <xs:attribute name="id"         type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="disponible" type="xs:boolean"         use="required"/>
+    </xs:complexType>
+
+    <!-- Tipo: precio (decimal positivo, máximo 999.99) -->
+    <xs:simpleType name="tipoPrecio">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:maxInclusive value="999.99"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ============================================================
+         Tipo: reservas_hoy
+    ============================================================ -->
+    <xs:complexType name="tipoReservasHoy">
+        <xs:sequence>
+            <xs:element name="reserva" type="tipoReserva" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="fecha" type="xs:date" use="required"/>
+    </xs:complexType>
+
+    <!-- ============================================================
+         Tipo: reserva
+    ============================================================ -->
+    <xs:complexType name="tipoReserva">
+        <xs:sequence>
+            <xs:element name="cliente"      type="tipoClienteReserva"/>
+            <xs:element name="mesa"         type="tipoMesa"/>
+            <xs:element name="hora"         type="xs:time"/>
+            <xs:element name="num_personas">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="estado"       type="tipoEstadoReserva"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Tipo: datos del cliente en una reserva -->
+    <xs:complexType name="tipoClienteReserva">
+        <xs:sequence>
+            <xs:element name="nombre"    type="xs:string"/>
+            <xs:element name="apellido"  type="xs:string"/>
+            <xs:element name="telefono">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[6789]\d{8}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tipo: mesa (solo atributos) -->
+    <xs:complexType name="tipoMesa">
+        <xs:attribute name="numero"    type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="capacidad" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Enumeración: estados posibles de reserva -->
+    <xs:simpleType name="tipoEstadoReserva">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="pendiente"/>
+            <xs:enumeration value="confirmada"/>
+            <xs:enumeration value="cancelada"/>
+            <xs:enumeration value="completada"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

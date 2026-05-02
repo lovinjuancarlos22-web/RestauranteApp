@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    PROYECTO INTERMODULAR 1º DAM – Gestión de Restaurante
+    Módulo: Lenguajes de Marcas (0373)
+    Descripción: Exportación de la carta del restaurante
+    Fecha: 2025
+-->
+<restaurante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="esquema.xsd"
+             nombre="El Buen Sabor"
+             direccion="Calle Mayor, 12 - Las Palmas de Gran Canaria">
+
+    <carta>
+
+        <categoria id="1" nombre="Entrantes">
+            <plato id="1" disponible="true">
+                <nombre>Croquetas de jamón</nombre>
+                <descripcion>8 unidades, bechamel casera</descripcion>
+                <precio>7.50</precio>
+            </plato>
+            <plato id="2" disponible="true">
+                <nombre>Ensalada mixta</nombre>
+                <descripcion>Tomate, lechuga, atún, aceituna</descripcion>
+                <precio>6.00</precio>
+            </plato>
+            <plato id="3" disponible="true">
+                <nombre>Patatas bravas</nombre>
+                <descripcion>Con salsa brava y alioli</descripcion>
+                <precio>5.50</precio>
+            </plato>
+            <plato id="4" disponible="true">
+                <nombre>Jamón ibérico</nombre>
+                <descripcion>Loncheado, con pan con tomate</descripcion>
+                <precio>12.00</precio>
+            </plato>
+        </categoria>
+
+        <categoria id="2" nombre="Principales">
+            <plato id="5" disponible="true">
+                <nombre>Secreto ibérico</nombre>
+                <descripcion>Con patatas panaderas y pimientos</descripcion>
+                <precio>15.00</precio>
+            </plato>
+            <plato id="6" disponible="true">
+                <nombre>Merluza a la romana</nombre>
+                <descripcion>Con ensalada y limón</descripcion>
+                <precio>14.00</precio>
+            </plato>
+            <plato id="7" disponible="true">
+                <nombre>Pechuga de pollo</nombre>
+                <descripcion>A la plancha con verduras salteadas</descripcion>
+                <precio>11.00</precio>
+            </plato>
+            <plato id="8" disponible="true">
+                <nombre>Paella de marisco</nombre>
+                <descripcion>Para 2 personas, precio por persona</descripcion>
+                <precio>18.00</precio>
+            </plato>
+            <plato id="9" disponible="true">
+                <nombre>Pasta carbonara</nombre>
+                <descripcion>Tallarines, bacon, huevo, parmesano</descripcion>
+                <precio>10.50</precio>
+            </plato>
+        </categoria>
+
+        <categoria id="3" nombre="Postres">
+            <plato id="10" disponible="true">
+                <nombre>Tarta de queso</nombre>
+                <descripcion>Casera, con mermelada de frutos rojos</descripcion>
+                <precio>5.00</precio>
+            </plato>
+            <plato id="11" disponible="true">
+                <nombre>Flan de huevo</nombre>
+                <descripcion>Casero con caramelo</descripcion>
+                <precio>4.00</precio>
+            </plato>
+            <plato id="12" disponible="true">
+                <nombre>Coulant de chocolate</nombre>
+                <descripcion>Tibio, con helado de vainilla</descripcion>
+                <precio>5.50</precio>
+            </plato>
+        </categoria>
+
+        <categoria id="4" nombre="Bebidas">
+            <plato id="13" disponible="true">
+                <nombre>Agua mineral</nombre>
+                <descripcion>50cl</descripcion>
+                <precio>1.50</precio>
+            </plato>
+            <plato id="14" disponible="true">
+                <nombre>Refresco</nombre>
+                <descripcion>Coca-cola, Fanta, Sprite 33cl</descripcion>
+                <precio>2.50</precio>
+            </plato>
+            <plato id="15" disponible="true">
+                <nombre>Vino de la casa</nombre>
+                <descripcion>Copa de vino tinto o blanco</descripcion>
+                <precio>2.50</precio>
+            </plato>
+            <plato id="16" disponible="true">
+                <nombre>Cerveza</nombre>
+                <descripcion>Caña o botellín</descripcion>
+                <precio>2.00</precio>
+            </plato>
+        </categoria>
+
+    </carta>
+
+    <reservas_hoy fecha="2025-05-01">
+        <reserva id="1">
+            <cliente>
+                <nombre>Ana</nombre>
+                <apellido>García López</apellido>
+                <telefono>612345678</telefono>
+            </cliente>
+            <mesa numero="2" capacidad="4"/>
+            <hora>20:30</hora>
+            <num_personas>3</num_personas>
+            <estado>confirmada</estado>
+        </reserva>
+        <reserva id="2">
+            <cliente>
+                <nombre>Carlos</nombre>
+                <apellido>Martínez Ruiz</apellido>
+                <telefono>623456789</telefono>
+            </cliente>
+            <mesa numero="4" capacidad="6"/>
+            <hora>21:00</hora>
+            <num_personas>5</num_personas>
+            <estado>confirmada</estado>
+        </reserva>
+    </reservas_hoy>
+
+</restaurante>
