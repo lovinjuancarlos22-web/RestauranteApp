@@ -1,4 +1,3 @@
-# Informe Técnico – Sistemas Informáticos (0483)
 ## Proyecto: Gestión de Restaurante
 
 ---
@@ -86,13 +85,3 @@ Lo básico que habría que hacer para mantener esto funcionando:
 - Actualizar Windows cuando toque
 - Si la aplicación falla, lo primero es comprobar que el servicio de PostgreSQL está activo en el administrador de servicios de Windows
 
----
-
-## 7. Capturas de funcionamiento
-
-Las capturas están en la carpeta `docs/sistemas/capturas/`:
-
-- `01_menu_principal.png` – menú principal de la aplicación
-- `02_listado_clientes.png` – listado de clientes desde la BD
-- `03_mesas_libres.png` – consulta de mesas disponibles
-- `04_carta_menu.png` – carta completa del restaurante
